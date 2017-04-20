@@ -1,0 +1,24 @@
+body {
+  margin: 0;
+}
+
+.sa-app-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+}
+
+.sa-main {
+  margin-top: auto;
+}
+
+header{
+  flex: 1 100%;
+}
+
+@media all and (min-width: 800px) {
+  main { flex: 2 0px; }
+  nav { order: 1; }
+  main { order: 2; }
+  footer { order: 3; }
+}

@@ -1,0 +1,38 @@
+.sa-flexbox-grid-container {
+  display: flex;
+  flex-direction: column;
+  flex-flow: row wrap;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.sa-flexbox-row-grid-container:hover {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.sa-flexbox-row-grid-container {
+  display: flex;
+  flex-direction: row;
+  flex: 1 100%;
+  height: 200px;
+  width: 200px;
+  margin: 5px;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0px;
+  font-family: Arial;
+  color: #000000;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+h3 {
+  margin-left: 5px;
+}
+
+hr {
+  margin: 5px;
+  border-width: 2px;
+}

@@ -1,0 +1,15 @@
+.sa-header {
+  background-color: #140E39;
+  height: 120px;
+  color: white;
+  flex: 1 100%;
+}
+
+.sa-header--red {
+  height: 40px;
+  background-color: #C1272D;
+}
+
+.sa-header--tittle {
+  padding-left: 15px;
+}

@@ -1,0 +1,15 @@
+
+.sa-search-asset-box {
+  margin-left: 5px
+}
+
+.sa-search-asset-box input, button{
+  margin-left: 5px;
+  padding: 10px;
+}
+
+.sa-search-asset-box button{
+  padding-left: 40px;
+  padding-right: 40px;
+  cursor: pointer;
+}

@@ -1,0 +1,17 @@
+
+.sa-update-asset-box {
+  margin: 15px;
+  background-color: #EEEEEE;
+  padding: 10px;
+  max-width: 480px
+}
+
+.sa-update-asset-box-form {
+  display: flex;
+  flex-flow: column;
+}
+
+.sa-update-asset-box-form input, select, textarea, label {
+  margin-bottom: 15px;
+  padding: 10px
+}

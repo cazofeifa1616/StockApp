@@ -1,0 +1,16 @@
+.sa-add-supply-box {
+  margin: 5px;
+  background-color: #EEEEEE;
+  padding: 10px;
+  max-width: 480px
+}
+
+.sa-add-supply-box-form {
+  display: flex;
+  flex-flow: column;
+}
+
+.sa-add-supply-box-form input, textarea, select {
+  margin-bottom: 15px;
+  padding: 10px
+}

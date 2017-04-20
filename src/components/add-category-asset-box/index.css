@@ -1,0 +1,11 @@
+.sa-add-asset-category-box{
+  margin-top: 15px;
+  margin-left: 5px;
+  background-color: #EEEEEE;
+  padding: 10px;
+  max-width: 480px;
+}
+
+.sa-add-asset-category-box input, button {
+  padding: 10px
+}

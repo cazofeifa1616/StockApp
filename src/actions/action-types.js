@@ -1,0 +1,14 @@
+import constants from 'flux-constants'
+
+export default constants([
+  'RECEIVE_CATEGORIES',
+  'RECEIVE_SUPPLIES',
+  'UPDATE_SUPPLY_SUCCESS',
+  'UPDATE_ASSET_SUCCESS',
+  'RECEIVE_ASSETS',
+  'RECEIVE_ASSETS_CATEGORIES',
+  'ADD_CATEGORY',
+  'ADD_SUPPLY',
+  'ADD_ASSET',
+  'ADD_CATEGORY_ASSETS'
+])

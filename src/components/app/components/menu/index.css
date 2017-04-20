@@ -1,0 +1,44 @@
+.sa-menu-navigation {
+  width: 250px;
+  list-style: none;
+}
+
+.sa-menu-navigation ul {
+  padding: 5px;
+}
+
+.sa-menu-navigation li p {
+  margin: 5px;
+  padding: 5px;
+  color: white;
+}
+
+.sa-menu-navigation li {
+  display: block;
+  color: black;
+  background-color: #4C7FB4;
+  margin-bottom: 5px;
+  border: 1px solid #4C7FB4;
+}
+
+.sa-menu-link {
+  display: none;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.sa-menu-navigation li:hover {
+  background-color: #fff;
+}
+
+.sa-menu-navigation li:hover p {
+  background-color: #4C7FB4;
+  margin: 0;
+  padding: 5px;
+  cursor: default;
+}
+
+.sa-menu-navigation li:hover .sa-menu-link {
+  display: block;
+  padding: 5px 15px 5px 15px;
+}

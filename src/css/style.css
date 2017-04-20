@@ -1,0 +1,20 @@
+.sa-btn {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0px;
+  font-family: Arial;
+  color: #ffffff;
+  background: #3498db;
+  text-decoration: none;
+}
+
+.sa-btn--disable {
+  background-color: #ECECEC;
+  color: #898090;
+}
+
+.sa-btn:hover {
+  background: #3cb0fd;
+  text-decoration: none;
+  cursor: pointer;
+}
