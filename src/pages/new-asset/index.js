@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import * as categoriesActions from '../../actions/categories-assets'
 import * as assetsActions from '../../actions/assets'
+import App from '../../components/app'
 
 class NewAssetPage extends Component {
 
@@ -57,7 +58,7 @@ class NewAssetPage extends Component {
     const categoryCode = Number(
     event.target.categoriesAssets[event.target.categoriesAssets.selectedIndex].id)
     //console.log(categoryCode)
-    const newAsset = { 
+    const newAsset = {
       assetName,
       assetCode,
       assetPrice,
@@ -142,13 +143,15 @@ handleAddAssetInputChange(event) {
 
   render () {
     return (
-      <NewAssetLayout categoriesAssets={this.props.categoriesAssets}
-        handleCategoryAssetSubmit={this.handleCategoryAssetSubmit}
-        handleAssetSubmit={this.handleAssetSubmit}
-        addAssetIsEmpty={this.state.addAssetIsEmpty}
-        handleAddAssetInputChange={this.handleAddAssetInputChange}
-        addCategoryAssetIsEmpty={this.state.addCategoryAssetIsEmpty}
-        handleAddCategoryAssetInputChange={this.handleAddCategoryAssetInputChange}/>
+      <App isSignedIn={this.props.isSignedIn} push={this.props.router.push}>
+        <NewAssetLayout categoriesAssets={this.props.categoriesAssets}
+          handleCategoryAssetSubmit={this.handleCategoryAssetSubmit}
+          handleAssetSubmit={this.handleAssetSubmit}
+          addAssetIsEmpty={this.state.addAssetIsEmpty}
+          handleAddAssetInputChange={this.handleAddAssetInputChange}
+          addCategoryAssetIsEmpty={this.state.addCategoryAssetIsEmpty}
+          handleAddCategoryAssetInputChange={this.handleAddCategoryAssetInputChange}/>
+      </App>
     )
   }
 }
@@ -162,7 +165,8 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state, ownProps) {
   return {
-    categoriesAssets: state.categoriesAssets
+    categoriesAssets: state.categoriesAssets,
+    isSignedIn: state.login.session !== undefined ? state.login.session.isSignedIn : false
   }
 }
 

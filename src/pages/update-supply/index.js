@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import UpdateSupplyLayout from './layout'
 import * as suppliesActions from '../../actions/supplies'
+import App from '../../components/app'
 
 class UpdateSupplyPage extends Component {
 
@@ -87,11 +88,13 @@ class UpdateSupplyPage extends Component {
 
   render () {
     return (
-      <UpdateSupplyLayout supplies={this.props.supplies}
-        handleUpdateSupply={this.handleUpdateSupply}
-        isEmpty={this.state.isEmpty}
-        handleInputChange={this.handleInputChange}
-        validateInput={this.validateInput}/>
+      <App isSignedIn={this.props.isSignedIn} push={this.props.router.push} >
+        <UpdateSupplyLayout supplies={this.props.supplies}
+          handleUpdateSupply={this.handleUpdateSupply}
+          isEmpty={this.state.isEmpty}
+          handleInputChange={this.handleInputChange}
+          validateInput={this.validateInput}/>
+      </App>
     )
   }
 }
@@ -104,7 +107,8 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state, ownProps) {
   return {
-    supplies: state.supplies
+    supplies: state.supplies,
+    isSignedIn: state.login.session !== undefined ? state.login.session.isSignedIn : false
   }
 }
 

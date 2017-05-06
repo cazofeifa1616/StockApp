@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import SearchAssetLayout from './layout'
 import * as assetsActions from '../../actions/categories-assets'
+import App from '../../components/app'
 
 class SearchAssetPage extends Component {
   componentWillMount() {
@@ -12,7 +13,9 @@ class SearchAssetPage extends Component {
 
   render () {
     return (
-      <SearchAssetLayout categoriesAssets={this.props.categoriesAssets}/>
+      <App isSignedIn={this.props.isSignedIn} push={this.props.router.push}>
+        <SearchAssetLayout categoriesAssets={this.props.categoriesAssets}/>
+      </App>
     )
   }
 
@@ -25,7 +28,8 @@ SearchAssetPage.propTypes = {
 function mapStateToProps(state, ownProps) {
 	//console.log(state.categoriesAssets);
   return {
-    categoriesAssets: state.categoriesAssets
+    categoriesAssets: state.categoriesAssets,
+    isSignedIn: state.login.session !== undefined ? state.login.session.isSignedIn : false
   }
 
 }

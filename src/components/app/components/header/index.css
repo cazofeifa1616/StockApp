@@ -13,3 +13,14 @@
 .sa-header--tittle {
   padding-left: 15px;
 }
+
+.sa-header-logout--button {
+  cursor: pointer;
+  float: right;
+  margin-top: -60px;
+  min-width: 90px;
+  background-color: #4C7FB4;
+  color: white;
+  margin-right: 5px;
+  border: none;
+}

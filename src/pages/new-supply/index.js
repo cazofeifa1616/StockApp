@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import * as categoriesActions from '../../actions/categories'
 import * as suppliesActions from '../../actions/supplies'
+import App from '../../components/app'
 
 class NewSupplyPage extends Component {
 
@@ -42,16 +43,18 @@ class NewSupplyPage extends Component {
       $imagePreview = (<div className="previewText">Selecciona una imágen para previsualizarla</div>)
     }
     return (
-      <NewSupplyLayout className="sa-new-supply-layout" categories={this.props.categories}
-        handleCategorySubmit={this.handleCategorySubmit}
-        handleSupplySubmit={this.handleSupplySubmit}
-        isEmpty={this.state.isEmpty}
-        isCategoryEmpty={this.state.isCategoryEmpty}
-        handleInputChange={this.handleInputChange}
-        handleCategoryFormChange={this.handleCategoryFormChange}
-        validateInput={this.validateInput}
-        handleImageChange={this.handleImageChange}
-        imagePreviewInfo={$imagePreview}/>
+      <App isSignedIn={this.props.isSignedIn} push={this.props.router.push}>
+        <NewSupplyLayout className="sa-new-supply-layout" categories={this.props.categories}
+          handleCategorySubmit={this.handleCategorySubmit}
+          handleSupplySubmit={this.handleSupplySubmit}
+          isEmpty={this.state.isEmpty}
+          isCategoryEmpty={this.state.isCategoryEmpty}
+          handleInputChange={this.handleInputChange}
+          handleCategoryFormChange={this.handleCategoryFormChange}
+          validateInput={this.validateInput}
+          handleImageChange={this.handleImageChange}
+          imagePreviewInfo={$imagePreview}/>
+      </App>
     )
   }
 
@@ -195,7 +198,8 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state, ownProps) {
   return {
-    categories: state.categories
+    categories: state.categories,
+    isSignedIn: state.login.session !== undefined ? state.login.session.isSignedIn : false
   }
 }
 

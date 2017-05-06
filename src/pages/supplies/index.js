@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import SuppliesLayout from './layout'
 import * as suppliesActions from '../../actions/supplies'
+import App from '../../components/app'
 
 class SuppliesPage extends Component {
   componentWillMount() {
@@ -11,14 +12,17 @@ class SuppliesPage extends Component {
 
   render () {
     return (
-      <SuppliesLayout supplies={this.props.supplies}/>
+      <App isSignedIn={this.props.isSignedIn} push={this.props.router.push}>
+        <SuppliesLayout supplies={this.props.supplies}/>
+      </App>
     )
   }
 }
 
 function mapStateToProps(state, ownProps) {
   return {
-    supplies: state.supplies
+    supplies: state.supplies,
+    isSignedIn: state.login.session !== undefined ? state.login.session.isSignedIn : false
   }
 }
 

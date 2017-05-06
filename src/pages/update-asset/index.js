@@ -3,6 +3,7 @@ import UpdateAssetLayout from './layout'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import * as assetsActions from '../../actions/assets' //es como cmd cd.. y cd
+import App from '../../components/app'
 
 class UpdateAssetPage extends Component {
   constructor (props) {
@@ -108,17 +109,19 @@ class UpdateAssetPage extends Component {
 
   render () {
     return (
-      <UpdateAssetLayout 
-      assets={this.props.assets}
-      handleUpdateAsset={ this.handleUpdateAsset }
-      updateIsEmpty={this.state.updateIsEmpty}
-      handleUpdateInputChange={this.handleUpdateInputChange}/>
+      <App isSignedIn={this.props.isSignedIn} push={this.props.router.push}>
+        <UpdateAssetLayout
+        assets={this.props.assets}
+        handleUpdateAsset={ this.handleUpdateAsset }
+        updateIsEmpty={this.state.updateIsEmpty}
+        handleUpdateInputChange={this.handleUpdateInputChange}/>
+      </App>
     )
   }
 }
 
 /*
-Ejecución de los actions 
+Ejecución de los actions
 */
 
 function mapDispatchToProps(dispatch) {
@@ -129,7 +132,8 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state, ownProps) {
   return {
-    assets: state.assets
+    assets: state.assets,
+    isSignedIn: state.login.session !== undefined ? state.login.session.isSignedIn : false
   }
 }
 
