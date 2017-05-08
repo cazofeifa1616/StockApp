@@ -2,6 +2,8 @@ import React, {PropTypes} from 'react'
 import {Link} from 'react-router'
 import './index.css'
 
+//Cambio para base de datos
+//const Category = ({props}) => {
 const Category = (props) => {
 
   return(

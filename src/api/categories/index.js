@@ -1,17 +1,24 @@
-//import fetch from 'isomorphic-fetch'
+import fetch from 'isomorphic-fetch'
 import sampleData from '../../static/json/sample-data'
 
 class CategoryApi {
   static getAllCategories() {
     return sampleData
+    
+    //--------------------------------------------------------
+    //Conexión a base de datos
     /*
-    return fetch(categoriesData)
+    console.log('Entró')
+      return fetch('http://localhost:3001/suministros')
       .then(response => {
+        console.log('Entró2')       
         return response.json()
       }).catch(error => {
+        console.log('No entró')
         return error
       })
-      */
+    */
+    //--------------------------------------------------------
   }
 
   static addCategory(category) {

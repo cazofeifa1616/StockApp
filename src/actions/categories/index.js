@@ -34,28 +34,42 @@ export function addCategorySuccess (categories) {
 
 export function requestCategories () {
   return receiveCategories(categoriesApi.getAllCategories())
+
+  //--------------------------------------------------------
+  //Conexión a base de datos
   /*
-   return (dispatch) => {
-     return categoriesApi.getAllCategories()
-     .then(result => {
-       dispatch(receiveCategories({result}))
-     }).catch(error => {
-       throw(error)
-     })
+  console.log('entra request')
+  return (dispatch) => {
+    return categoriesApi.getAllCategories()
+    .then(result => {
+      console.log('Trajo request')
+      console.log(result)
+      dispatch(receiveCategories({result}))
+      console.log('Salio request')
+    }).catch(error => {
+      console.log('Error')
+      throw(error)
+    })
   }
   */
+  //--------------------------------------------------------
 }
 
 export function addCategory (category) {
   return addCategorySuccess(categoriesApi.addCategory(category))
   /*
+  //--------------------------------------------------------
+  //Conexión a base de datos  
    return (dispatch) => {
      return categoriesApi.addCategory(category)
      .then(result => {
+      console.log('Trajo request 2')
+      console.log(result)
        dispatch(addCategorySuccess({result}))
      }).catch(error => {
        throw(error)
      })
   }
   */
+  //--------------------------------------------------------
 }
