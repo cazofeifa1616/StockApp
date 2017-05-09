@@ -32,22 +32,17 @@ export function addCategorySuccess (categories) {
  *
  */
 
-export function requestCategories () {
+export function requestCategories () {  
   return receiveCategories(categoriesApi.getAllCategories())
 
   //--------------------------------------------------------
   //Conexión a base de datos
-  /*
-  console.log('entra request')
+  /*  
   return (dispatch) => {
     return categoriesApi.getAllCategories()
     .then(result => {
-      console.log('Trajo request')
-      console.log(result)
-      dispatch(receiveCategories({result}))
-      console.log('Salio request')
+      dispatch(receiveCategories(result))
     }).catch(error => {
-      console.log('Error')
       throw(error)
     })
   }

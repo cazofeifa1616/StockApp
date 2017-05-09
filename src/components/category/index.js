@@ -10,8 +10,8 @@ const Category = (props) => {
     <div>
       <Link className="sa-flexbox-row-grid-container"
         to={`/${props.link}/${props.categoryDetails.categoryCode}`}>
-        <img className="sa-category-image" src={props.categoryDetails.categoryImage} alt={props.categoryDetails.categoryName}></img>
-        <h3 className="categoryName">{props.categoryDetails.categoryName}</h3>
+        <img className="sa-category-image" src={props.categoryDetails.categoryImage} alt={props.categoryDetails.descripcion}></img>
+        <h3 className="categoryName">{props.categoryDetails.codigo}</h3>
       </Link>
     </div>
   )

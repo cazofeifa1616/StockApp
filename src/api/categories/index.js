@@ -7,16 +7,14 @@ class CategoryApi {
     
     //--------------------------------------------------------
     //Conexión a base de datos
-    /*
-    console.log('Entró')
-      return fetch('http://localhost:3001/suministros')
-      .then(response => {
-        console.log('Entró2')       
-        return response.json()
-      }).catch(error => {
-        console.log('No entró')
-        return error
-      })
+    /*    
+    return fetch('http://localhost:3001/suministros')
+    .then(response => {      
+      return response.json()
+    }).catch(error => {
+      //console.log('No entró')
+      return error
+    })
     */
     //--------------------------------------------------------
   }
