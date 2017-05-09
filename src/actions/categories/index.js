@@ -51,6 +51,7 @@ export function requestCategories () {
 }
 
 export function addCategory (category) {
+  console.log("Entro a agregar action")
   return addCategorySuccess(categoriesApi.addCategory(category))
   /*
   //--------------------------------------------------------

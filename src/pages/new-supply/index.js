@@ -79,6 +79,7 @@ class NewSupplyPage extends Component {
       categoryName,
       categoryImage
     }
+    console.log("Entro a agregar")
     this.props.categoriesActions.addCategory(newCategory)
     this.setState({
       categoryImage: '',
