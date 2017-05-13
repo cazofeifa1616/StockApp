@@ -6,7 +6,7 @@ const Menu = props => {
   return(
     <div>
       {
-        props.isSignedIn
+        props.isSignedIn && props.isAdmin
         ?
         <nav className="sa-menu-navigation">
           <ul>
@@ -32,7 +32,8 @@ const Menu = props => {
 }
 
 Menu.propTypes = {
-  isSignedIn: PropTypes.bool
+  isSignedIn: PropTypes.bool,
+  isAdmin: PropTypes.bool
 }
 
 export default Menu

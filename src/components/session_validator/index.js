@@ -8,6 +8,11 @@ class SessionValidator extends React.Component {
     if (!this.props.isSignedIn) {
       this.props.router.push('/login')
     }
+    else {
+      if (!this.props.isAdmin) {
+        this.props.router.push('/consume_supply')
+      }
+    }
   }
 
   render () {
@@ -22,6 +27,7 @@ class SessionValidator extends React.Component {
 function mapStateToProps(state, ownProps) {
   return {
     isSignedIn: state.login.session !== undefined ? state.login.session.isSignedIn : false,
+    isAdmin: state.login.session !== undefined ? state.login.session.isAdmin : false
   }
 }
 

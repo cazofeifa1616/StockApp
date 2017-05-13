@@ -60,7 +60,8 @@ export function requestLocalLogin (credentials, push) {
   return dispatch => {
     dispatch(localLoginSuccess(push, {
       jwt: {},
-      isSignedIn: true
+      isSignedIn: true,
+      isAdmin: false
     }))
   }
   /*

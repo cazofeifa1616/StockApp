@@ -12,7 +12,8 @@ class AssetsPage extends Component {
 
   render () {
     return (
-      <App isSignedIn={this.props.isSignedIn} push={this.props.router.push}>
+      <App isSignedIn={this.props.isSignedIn} push={this.props.router.push}
+        isAdmin={this.props.isAdmin}>
         <AssetsLayout assets={this.props.assets}/>
       </App>
     )
@@ -23,6 +24,7 @@ function mapStateToProps(state, ownProps) {
   return {
     assets: state.assets,
     isSignedIn: state.login.session !== undefined ? state.login.session.isSignedIn : false,
+    isAdmin: state.login.session !== undefined ? state.login.session.isAdmin : false,
     userJwt: state.login.session !== undefined ? state.login.session.userJwt : undefined
   }
 }

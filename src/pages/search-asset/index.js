@@ -13,7 +13,8 @@ class SearchAssetPage extends Component {
 
   render () {
     return (
-      <App isSignedIn={this.props.isSignedIn} push={this.props.router.push}>
+      <App isSignedIn={this.props.isSignedIn} push={this.props.router.push}
+        isAdmin={this.props.isSignedIn}>
         <SearchAssetLayout categoriesAssets={this.props.categoriesAssets}/>
       </App>
     )
@@ -29,7 +30,8 @@ function mapStateToProps(state, ownProps) {
 	//console.log(state.categoriesAssets);
   return {
     categoriesAssets: state.categoriesAssets,
-    isSignedIn: state.login.session !== undefined ? state.login.session.isSignedIn : false
+    isSignedIn: state.login.session !== undefined ? state.login.session.isSignedIn : false,
+    isAdmin: state.login.session !== undefined ? state.login.session.isAdmin : false
   }
 
 }

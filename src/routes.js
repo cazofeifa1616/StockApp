@@ -9,6 +9,7 @@ import AssetsPage from './pages/assets'
 import SearchAssetPage from './pages/search-asset'
 import NewAssetPage from './pages/new-asset'
 import UpdateAssetPage from './pages/update-asset'
+import ConsumeSuppliesPage from './pages/consume_supply'
 import Login from './pages/login'
 import SessionValidator from './components/session_validator'
 
@@ -25,6 +26,7 @@ export default (
       <Route path="/assets/:categoryId" component={AssetsPage} />
       <Route path="/update-asset" component={UpdateAssetPage} />
       <Route path="/new-asset" component={NewAssetPage} />
+      <Route path="/consume_supply" component={ConsumeSuppliesPage} />
     </Route>
     <Route path="*" component={NotFound} />
   </div>

@@ -43,7 +43,8 @@ class NewSupplyPage extends Component {
       $imagePreview = (<div className="previewText">Selecciona una imágen para previsualizarla</div>)
     }
     return (
-      <App isSignedIn={this.props.isSignedIn} push={this.props.router.push}>
+      <App isSignedIn={this.props.isSignedIn} push={this.props.router.push}
+        isAdmin={this.props.isAdmin}>
         <NewSupplyLayout className="sa-new-supply-layout" categories={this.props.categories}
           handleCategorySubmit={this.handleCategorySubmit}
           handleSupplySubmit={this.handleSupplySubmit}
@@ -200,7 +201,8 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state, ownProps) {
   return {
     categories: state.categories,
-    isSignedIn: state.login.session !== undefined ? state.login.session.isSignedIn : false
+    isSignedIn: state.login.session !== undefined ? state.login.session.isSignedIn : false,
+    isAdmin: state.login.session !== undefined ? state.login.session.isAdmin : false
   }
 }
 

@@ -143,7 +143,8 @@ handleAddAssetInputChange(event) {
 
   render () {
     return (
-      <App isSignedIn={this.props.isSignedIn} push={this.props.router.push}>
+      <App isSignedIn={this.props.isSignedIn} push={this.props.router.push}
+        isAdmin={this.props.isAdmin}>
         <NewAssetLayout categoriesAssets={this.props.categoriesAssets}
           handleCategoryAssetSubmit={this.handleCategoryAssetSubmit}
           handleAssetSubmit={this.handleAssetSubmit}
@@ -166,7 +167,8 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state, ownProps) {
   return {
     categoriesAssets: state.categoriesAssets,
-    isSignedIn: state.login.session !== undefined ? state.login.session.isSignedIn : false
+    isSignedIn: state.login.session !== undefined ? state.login.session.isSignedIn : false,
+    isAdmin: state.login.session !== undefined ? state.login.session.isAdmin : false
   }
 }
 
