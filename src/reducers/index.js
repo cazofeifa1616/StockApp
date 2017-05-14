@@ -3,14 +3,18 @@ import categories from './categories/categories-reducer'
 import supplies from './supplies/supplies-reducer'
 import assets from './assets/assets-reducer'
 import categoriesAssets from './categories-assets/categories-assets-reducer'
+import reports from './reports/reports-reducer'
 import login from './login'
+import supplyAmounts from './supplies_amounts'
 
 const rootReducers = combineReducers({
   categories,
   supplies,
   assets,
   categoriesAssets,
-  login
+  login,
+  reports,
+  supplyAmounts
 })
 
 export default rootReducers

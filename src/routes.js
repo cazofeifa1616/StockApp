@@ -12,6 +12,7 @@ import UpdateAssetPage from './pages/update-asset'
 import ConsumeSuppliesPage from './pages/consume_supply'
 import Login from './pages/login'
 import SessionValidator from './components/session_validator'
+import Report from './pages/reports'
 
 export default (
   <div>
@@ -27,6 +28,7 @@ export default (
       <Route path="/update-asset" component={UpdateAssetPage} />
       <Route path="/new-asset" component={NewAssetPage} />
       <Route path="/consume_supply" component={ConsumeSuppliesPage} />
+      <Route path="/report/:reportType" component={Report} />
     </Route>
     <Route path="*" component={NotFound} />
   </div>
