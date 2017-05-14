@@ -1,0 +1,20 @@
+.sa-consume-supplies--container {
+  margin: 15px;
+  background-color: #EEEEEE;
+  padding: 10px;
+  max-width: 480px
+}
+
+.sa-consume-supplies--form {
+  display: flex;
+  flex-flow: column;
+}
+
+.sa-consume-supplies--form input, select {
+  margin-bottom: 15px;
+  padding: 10px
+}
+
+.sa-supply-amount {
+  margin-left: 2px
+}

@@ -17,6 +17,13 @@ export function receiveSupplies (supplies) {
   }
 }
 
+export function receiveSupplyAmount (amount) {
+  return {
+    type: constants.RECEIVE_SUPPLY_AMOUNT,
+    amount
+  }
+}
+
 export function updateSupplySuccess (updatedSupply) {
   return {
     type: constants.UPDATE_SUPPLY_SUCCESS,
@@ -28,6 +35,13 @@ export function addSupplySuccess (newSupply) {
   return {
     type: constants.ADD_SUPPLY,
     newSupply
+  }
+}
+
+function updateSupplyAmountSuccess (supplies) {
+  return {
+    type: constants.UPDATE_SUPPLY_AMOUNT_SUCCESS,
+    supplies
   }
 }
 
@@ -50,6 +64,24 @@ export function addSupplySuccess (newSupply) {
       })
    }
    */
+ }
+
+ export function requestSupplyAmount (supplyCode) {
+   return receiveSupplyAmount(suppliesApi.getSupplyAmount(supplyCode))
+   /*
+    return (dispatch) => {
+      return suppliesApi.getSupplyAmount(supplyCode)
+      .then(result => {
+        dispatch(receiveSupplyAmount({result}))
+      }).catch(error => {
+        throw(error)
+      })
+   }
+   */
+ }
+
+ export function updateSupplyAmount (supplyCode) {
+   return updateSupplyAmountSuccess(suppliesApi.updateSupplyAmount(supplyCode))
  }
 
 export function requestSuppliesPerCategory (categoryId) {
