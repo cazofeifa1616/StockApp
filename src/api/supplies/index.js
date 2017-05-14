@@ -1,4 +1,4 @@
- //import fetch from 'isomorphic-fetch' 
+ //import fetch from 'isomorphic-fetch'
 import sampleSupplies from '../../static/json/sample-supplies'
 
 class SuppliesApi {
@@ -16,6 +16,13 @@ class SuppliesApi {
       */
   }
 
+  static updateSupplyAmount (supplyCode) {
+    Object.keys(sampleSupplies)
+    .filter(key => sampleSupplies[key].supplyCode === +supplyCode)
+    .map(key => sampleSupplies[key].supplyAmount--)
+    return sampleSupplies
+  }
+
   static getAllSupplies() {
     return sampleSupplies
     /*
@@ -26,6 +33,12 @@ class SuppliesApi {
       return error
     })
     */
+  }
+
+  static getSupplyAmount (supplyCode) {
+    return Object.keys(sampleSupplies)
+    .filter(key => sampleSupplies[key].supplyCode === +supplyCode)
+    .map(key => sampleSupplies[key].supplyAmount)
   }
 
   static updateSupply(supply) {
