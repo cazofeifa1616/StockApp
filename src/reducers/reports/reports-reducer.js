@@ -5,7 +5,6 @@ const reportsReducer = function (state = {}, action) {
     case constants.RECEIVE_REPORTS_TOTAL_VALUE:
       return action.reports;
     case constants.RECEIVE_REPORTS_INVENTARY_AMOUNT:
-      console.log(action.reports)
       return action.reports;
     case constants.RECEIVE_REPORTS_SUPPLY_CONSUPTION:
       return action.reports;

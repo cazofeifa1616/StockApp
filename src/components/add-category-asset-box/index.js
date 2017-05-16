@@ -4,21 +4,26 @@ import '../../css/style.css'
 
 const AddAssetCategoryBox = (props) => {
     return(
-      <form  className="sa-add-asset-category-box"
-      onSubmit={(e) => props.handleCategoryAssetSubmit(e)}
-      onChange={(e) => props.handleAddCategoryAssetInputChange(e)}>
-        <h3>Nueva Categoría</h3>
-        <input name="categoryName" placeholder="Nombre de la categoría"></input>
-      <button className="sa-btn">Seleccionar Imagen</button>
-       <input className={!props.addCategoryAssetIsEmpty ? "sa-btn" : "sa-btn--disable"}
-          disabled={props.addCategoryAssetIsEmpty} type="submit" value="Agregar Categoría"/>
-      </form>
+      <div className="sa-add-asset-category-box">
+        <form  className="sa-add-asset-category-box-form"
+        onSubmit={(e) => props.handleCategoryAssetSubmit(e)}
+        onChange={(e) => props.handleAssetCategoryFormChange(e)}>
+          <h3>Nueva Categoría</h3>
+          <input name="categoryName" placeholder="Nombre de la categoría"></input>
+          <input className="sa-inputfile" type="file" name="uploadImage"
+            onChange={(e) => props.handleAssetImageChange(e)} />
+         <input className={!props.addCategoryAssetIsEmpty ? "sa-btn" : "sa-btn--disable"}
+            disabled={props.addCategoryAssetIsEmpty} type="submit" value="Agregar Categoría"/>
+        </form>
+      </div>
     )
 }
 
 AddAssetCategoryBox.propTypes = {
   handleCategoryAssetSubmit: PropTypes.func.isRequired,
-  handleAddCategoryAssetInputChange: PropTypes.func.isRequired
-} 
+  handleAssetCategoryFormChange: PropTypes.func.isRequired,
+  handleAssetImageChange: PropTypes.func.isRequired,
+  addCategoryAssetIsEmpty: PropTypes.bool.isRequired
+}
 
 export default AddAssetCategoryBox

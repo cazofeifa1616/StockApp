@@ -9,7 +9,7 @@ export function receiveReportsTotalValue(reports) {
 }
 
 export function receiveReportsInventaryAmount(reports) {
-  console.log(reports)
+  //console.log(reports)
   return {
 
     type: constants.RECEIVE_REPORTS_INVENTARY_AMOUNT,

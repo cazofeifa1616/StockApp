@@ -1,12 +1,23 @@
 module.exports = {
   report1: {
-    reportCode: 1,
-    reportName: 'B01',
-    reportDescription: 'Teclado',
-    reportPrice: 500,
-    reportDateOfAdmission: '13/03/2016',
-    reportExpirationDate: '13/03/2022',
-    reportLocation: 'LAIMI 1',
-    reportState: 1,
+    assetCode: 1,
+    assetName: 'B01',
+    assetDescription: 'Teclado',
+    assetState: 'Activo',
+    assetLocation: 'LAIMI 1',
+  },
+  report2: {
+    assetCode: 1,
+    assetName: 'B01',
+    assetDescription: 'Monitor',
+    assetState: 'Dañado',
+    assetLocation: 'LAIMI 1',
+  },
+  report3: {
+    assetCode: 1,
+    assetName: 'B01',
+    assetDescription: 'Mouse',
+    assetState: 'Activo',
+    assetLocation: 'LAIMI 1',
   }
 }

@@ -10,6 +10,7 @@ body {
 
 .sa-main {
   margin-top: auto;
+  min-height: 500px;
 }
 
 header{

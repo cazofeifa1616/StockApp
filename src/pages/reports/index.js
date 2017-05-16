@@ -8,6 +8,7 @@ import App from '../../components/app';
 class ReportsPage extends Component {
   componentWillMount() {
     //console.log(this.props.params.reportType )
+
     if (this.props.params.reportType === ':ValorTotal'){
       //console.log(this.props.reportActions)
       this.props.actions.requestReportsTotalValue(); //mapDispatchToProps
@@ -34,12 +35,43 @@ class ReportsPage extends Component {
     else{
       this.props.actions.requestReportsSuppliesPerLab();
     }
+  }
 
+  componentWillReceiveProps(nextProps){
+      if (this.props.params.reportType !== nextProps.params.reportType){
+        if (nextProps.params.reportType === ':ValorTotal'){
+          //console.log(this.props.reportActions)
+          this.props.actions.requestReportsTotalValue(); //mapDispatchToProps
+        }
+        else if (nextProps.params.reportType === ':CantidadInventario'){
+          //console.log(this.props.reportActions)
+          this.props.actions.requestReportsInventaryAmount(); //mapDispatchToProps
+        }
+
+        else if (nextProps.params.reportType === ':ConsumoSuministro'){
+          //console.log(this.props.reportActions)
+          this.props.actions.requestReportsSupplyConsuption(); //mapDispatchToProps
+        }
+
+        else if (nextProps.params.reportType === ':EstadoActivos'){
+          //console.log(this.props.reportActions)
+          this.props.actions.requestReportsAssetsState(); //mapDispatchToProps
+        }
+
+        else if (nextProps.params.reportType === ':Bitacora'){
+          //console.log(this.props.reportActions)
+          this.props.actions.requestReportsLog(); //mapDispatchToProps
+        }
+        else{
+          this.props.actions.requestReportsSuppliesPerLab();
+        }
+      }
   }
 
   render () {
     return (
-      <App isSignedIn={this.props.isSignedIn} push={this.props.router.push}>
+      <App isSignedIn={this.props.isSignedIn} push={this.props.router.push}
+        isAdmin={this.props.isAdmin}>
         <ReportsLayout reportType={this.props.params.reportType} reports={this.props.reports}/>
       </App>
     );
@@ -47,11 +79,10 @@ class ReportsPage extends Component {
 }
 
 function mapStateToProps(state, ownProps) {
-  //console.log(state.reports)
   return {
     reports: state.reports,
     isSignedIn: state.login.session !== undefined ? state.login.session.isSignedIn : false,
-    userJwt: state.login.session !== undefined ? state.login.session.userJwt : undefined,
+    isAdmin: state.login.session !== undefined ? state.login.session.isAdmin : undefined,
   };
 }
 

@@ -27,7 +27,7 @@ const Menu = props => {
               <p>Reportes</p>
               <Link className="sa-menu-link" to='/report/:ValorTotal'>Valor total Suministros</Link>
               <Link className="sa-menu-link" to='/report/:CantidadInventario'>Cantidad inventario</Link>
-              <Link className="sa-menu-link" to='/consuption-report'>Consumo de suministros</Link>
+              <Link className="sa-menu-link" to='/report/:ConsumoSuministro'>Consumo de suministros</Link>
               <Link className="sa-menu-link" to='/report/:EstadoActivos'>Estado de los activos</Link>
               <Link className="sa-menu-link" to='/report/:Bitacora'>Bitácora interna</Link>
               <Link className="sa-menu-link" to='/report/:SuministroLaboratorio'>Suministro por laboratorio</Link>

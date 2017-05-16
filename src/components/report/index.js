@@ -4,7 +4,7 @@ import './index.css';
 class Report extends Component {
 
   render () {
-    console.log(this.props.details);
+    //console.log(this.props.details);
     /*
 		Valor total
 		*/
@@ -17,7 +17,6 @@ class Report extends Component {
     const { description } = this.props.details;
     const { name } = this.props.details;
     const { amount } = this.props.details;
-    const { location } = this.props.details;
 
     /*
 		Estado activos
@@ -40,6 +39,8 @@ class Report extends Component {
     const { supplyDescription } = this.props.details;
     const { supplyName } = this.props.details;
     const { supplyAmount } = this.props.details;
+    const { supplyLocation } = this.props.details;
+
 
     return (
     <div>
@@ -55,7 +56,6 @@ class Report extends Component {
   	  <div className="sa-flexbox-col">{description}</div>
   	  <div className="sa-flexbox-col">{name}</div>
   	  <div className="sa-flexbox-col">{amount}</div>
-  	  <div className="sa-flexbox-col">{location}</div>
     </div>
     : this.props.reportType === ':EstadoActivos'
     ?
@@ -79,6 +79,7 @@ class Report extends Component {
       <div className="sa-flexbox-col">{supplyDescription}</div>
       <div className="sa-flexbox-col">{supplyName}</div>
       <div className="sa-flexbox-col">{supplyAmount}</div>
+      <div className="sa-flexbox-col">{supplyLocation}</div>
 	  </div>
     : false
     }

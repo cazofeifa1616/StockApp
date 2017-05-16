@@ -1,11 +1,32 @@
 .sa-add-asset-category-box{
-  margin-top: 15px;
-  margin-left: 5px;
+  margin: 5px;
+  margin-top: 20px;
   background-color: #EEEEEE;
   padding: 10px;
   max-width: 480px;
 }
 
-.sa-add-asset-category-box input, button {
+.sa-add-asset-category-box-form {
+  display: flex;
+  flex-flow: column;
+}
+
+.sa-add-asset-category-box-form input{
+  margin-bottom: 15px;
   padding: 10px
+}
+
+.sa-image-preview {
+  text-align: center;
+  height: 168px;
+  border-left: 1px solid gray;
+  border-right: 1px solid gray;
+  border-top: 5px solid gray;
+  border-bottom: 5px solid gray;
+  margin-bottom: 15px
+}
+
+.sa-image-preview img {
+  width: 168px;
+  height: 100%;
 }

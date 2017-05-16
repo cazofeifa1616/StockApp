@@ -13,9 +13,10 @@ class NewAssetPage extends Component {
     this.handleCategoryAssetSubmit = this.handleCategoryAssetSubmit.bind(this)
     this.handleAssetSubmit = this.handleAssetSubmit.bind(this)
     this.handleAddAssetInputChange = this.handleAddAssetInputChange.bind(this)
+    this.handleAddAssetInputChange = this.handleAddAssetInputChange.bind(this)
+    this.handleAssetImageChange = this.handleAssetImageChange.bind(this)
     this.triggerAddAssetInputStateChange = this.triggerAddAssetInputStateChange.bind(this)
-    this.handleAddCategoryAssetInputChange = this.handleAddCategoryAssetInputChange.bind(this)
-    this.triggerAddCategoryAssetInputStateChange = this.triggerAddCategoryAssetInputStateChange.bind(this)
+    this.handleAssetCategoryFormChange = this.handleAssetCategoryFormChange.bind(this)
     this.state = {
       assetCategory: '',
       assetDescription: '',
@@ -33,15 +34,45 @@ class NewAssetPage extends Component {
     this.props.categoriesActions.requestAssetsCategories()
   }
 
+  render () {
+    let {imagePreviewUrl} = this.state
+    let $imagePreview = null
+    if(imagePreviewUrl) {
+      $imagePreview = (<img src={imagePreviewUrl} alt=''/>)
+    }
+    else {
+      $imagePreview = (<div className="previewText">Selecciona una imágen para previsualizarla</div>)
+    }
+    return (
+      <App isSignedIn={this.props.isSignedIn} push={this.props.router.push}
+        isAdmin={this.props.isAdmin}>
+        <NewAssetLayout categoriesAssets={this.props.categoriesAssets}
+          handleCategoryAssetSubmit={this.handleCategoryAssetSubmit}
+          handleAssetSubmit={this.handleAssetSubmit}
+          addAssetIsEmpty={this.state.addAssetIsEmpty}
+          handleAddAssetInputChange={this.handleAddAssetInputChange}
+          addCategoryAssetIsEmpty={this.state.addCategoryAssetIsEmpty}
+          handleAssetCategoryFormChange={this.handleAssetCategoryFormChange}
+          validateAssetInput={this.validateAssetInput}
+          handleAssetImageChange={this.handleAssetImageChange}
+          imagePreviewInfo={$imagePreview}/>
+      </App>
+    )
+  }
+
   handleCategoryAssetSubmit (event) {
     event.preventDefault()
     const categoryName = event.target.categoryName.value
-    const categoryImage = 'this is the image'
+    const categoryImage = this.state.imagePreviewUrl
     const newCategory = {
       categoryName,
       categoryImage
     }
     this.props.categoriesActions.addAssetsCategory(newCategory)
+    this.setState({
+      categoryImage: '',
+      imagePreviewUrl: ''
+    })
     event.target.reset()
   }
 
@@ -72,8 +103,19 @@ class NewAssetPage extends Component {
     event.target.reset()
   }
 
+  handleAssetCategoryFormChange (event) {
+    switch (event.target.name) {
+      case 'categoryName':
+        this.setState({categoryName: event.target.value},
+          function(){return this.triggerCategoryFormChange(this.state)})
+        break
+      default:
+        break
+    }
+  }
 
-handleAddAssetInputChange(event) {
+
+  handleAddAssetInputChange(event) {
     switch (event.target.name) {
       case 'assetDescription':
         console.log("description")
@@ -105,15 +147,17 @@ handleAddAssetInputChange(event) {
     }
   }
 
-  handleAddCategoryAssetInputChange(event) {
-    switch (event.target.name) {
-      case 'categoryName':
-        this.setState({assetCategory: event.target.value},
-          function(){return this.triggerAddCategoryAssetInputStateChange(this.state)})
-        break
-      default:
-        break
+  handleAssetImageChange (event) {
+    event.preventDefault()
+    let reader = new FileReader()
+    let file = event.target.files[0]
+    reader.onloadend = () => {
+      this.setState({
+        categoryImage: file,
+        imagePreviewUrl: reader.result},
+        function(){return this.triggerCategoryFormChange(this.state)})
     }
+    reader.readAsDataURL(file)
   }
 
   triggerAddAssetInputStateChange(state) {
@@ -132,29 +176,32 @@ handleAddAssetInputChange(event) {
     }
   }
 
-  triggerAddCategoryAssetInputStateChange(state) {
-    if(state.assetCategory !== '' && state.addCategoryAssetIsEmpty) {
-          this.setState({addCategoryAssetIsEmpty: !state.addCategoryAssetIsEmpty})
+  triggerCategoryFormChange(state) {
+    if(state.categoryName !== '' && state.categoryImage !== ''
+        && state.isCategoryEmpty){
+      this.setState({isCategoryEmpty: !state.isCategoryEmpty})
     }
-    else if((this.state.assetCategory === '') && !this.state.addAssetSupplyIsEmpty) {
-                this.setState({addCategoryAssetIsEmpty: !this.state.addCategoryAssetIsEmpty})
+    else if((state.categoryName === '' || state.categoryImage === '')
+      && !state.isCategoryEmpty){
+        this.setState({isCategoryEmpty: !this.state.isCategoryEmpty})
+      }
+  }
+
+  validateAssetInput(event) {
+    event.persist()
+    const theEvent = event || window.event;
+    var key = theEvent.keyCode || theEvent.which;
+    key = String.fromCharCode( key );
+    var regex = /[0-9]|\./;
+    if(event.target.name === 'assetPrice') {
+      regex = /[0-9]/;
+    }
+    if( !regex.test(key) ) {
+      theEvent.returnValue = false;
+      if(theEvent.preventDefault) theEvent.preventDefault();
     }
   }
 
-  render () {
-    return (
-      <App isSignedIn={this.props.isSignedIn} push={this.props.router.push}
-        isAdmin={this.props.isAdmin}>
-        <NewAssetLayout categoriesAssets={this.props.categoriesAssets}
-          handleCategoryAssetSubmit={this.handleCategoryAssetSubmit}
-          handleAssetSubmit={this.handleAssetSubmit}
-          addAssetIsEmpty={this.state.addAssetIsEmpty}
-          handleAddAssetInputChange={this.handleAddAssetInputChange}
-          addCategoryAssetIsEmpty={this.state.addCategoryAssetIsEmpty}
-          handleAddCategoryAssetInputChange={this.handleAddCategoryAssetInputChange}/>
-      </App>
-    )
-  }
 }
 
 function mapDispatchToProps(dispatch) {
@@ -173,7 +220,7 @@ function mapStateToProps(state, ownProps) {
 }
 
 NewAssetPage.propTypes = {
-  supplies: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
+  assets: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewAssetPage)

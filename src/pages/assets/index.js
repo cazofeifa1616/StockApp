@@ -1,13 +1,14 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
 import AssetsLayout from './layout'
-import {requestAssetsPerCategory} from '../../actions/assets'
+import * as assetsActions from '../../actions/assets'
 import App from '../../components/app'
 
 
 class AssetsPage extends Component {
   componentWillMount() {
-    this.props.dispatch(requestAssetsPerCategory(this.props.params.categoryId))
+    this.props.actions.requestAssetsPerCategory(this.props.params.categoryId)
   }
 
   render () {
@@ -24,9 +25,14 @@ function mapStateToProps(state, ownProps) {
   return {
     assets: state.assets,
     isSignedIn: state.login.session !== undefined ? state.login.session.isSignedIn : false,
-    isAdmin: state.login.session !== undefined ? state.login.session.isAdmin : false,
-    userJwt: state.login.session !== undefined ? state.login.session.userJwt : undefined
+    isAdmin: state.login.session !== undefined ? state.login.session.isAdmin : false
   }
 }
 
-export default connect(mapStateToProps)(AssetsPage)
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(assetsActions, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AssetsPage)
