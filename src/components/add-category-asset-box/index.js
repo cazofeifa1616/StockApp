@@ -9,9 +9,10 @@ const AddAssetCategoryBox = (props) => {
         onSubmit={(e) => props.handleCategoryAssetSubmit(e)}
         onChange={(e) => props.handleAssetCategoryFormChange(e)}>
           <h3>Nueva Categoría</h3>
-          <input name="categoryName" placeholder="Nombre de la categoría"></input>
+          <input name="assetCategory" placeholder="Nombre de la categoría"></input>
           <input className="sa-inputfile" type="file" name="uploadImage"
             onChange={(e) => props.handleAssetImageChange(e)} />
+          <div className="sa-image-preview">{props.imageAssetPreviewInfo}</div>
          <input className={!props.addCategoryAssetIsEmpty ? "sa-btn" : "sa-btn--disable"}
             disabled={props.addCategoryAssetIsEmpty} type="submit" value="Agregar Categoría"/>
         </form>

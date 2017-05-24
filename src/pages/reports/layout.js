@@ -2,10 +2,24 @@ import React from 'react';
 import Report from '../../components/report';
 import './index.css';
 
-const ReportsLayout = ({ reports, reportType }) => {
+const ReportsLayout = (props)=> {
     return (
       <div className="sa-report-container">
-        <h3>Reporte </h3>
+      <h3>Reporte </h3>
+        {
+          props.reportType === ":ConsumoSuministro"
+          ?
+          <form className=".sa-report-date"
+            onSubmit={(e) => props.handleConsuptionReportSubmit(e)}>
+            <label>Fecha de inicio</label>
+            <input type="date" name="fechaInicio" placeholder="Fecha de inicio"></input>
+            <label>Fecha final</label>
+            <input type="date" name="fechaFin" placeholder="Fecha final"></input>
+            <input className="sa-btn" type="submit" value="Generar reporte" />
+            <label className='sa-label'>{props.errorMsg}</label>
+          </form>
+          : false
+        }
         <div className="sa-flexbox-table">
           <div className='thead'>
             <div>
@@ -13,12 +27,12 @@ const ReportsLayout = ({ reports, reportType }) => {
               {
                 <div>
                 {
-                  reportType === ':ValorTotal'
+                  props.reportType === ':ValorTotal'
                   ?
 
                   <div className="sa-flexbox-thead">Valor Total</div>
 
-                  : reportType === ':CantidadInventario'
+                  : props.reportType === ':CantidadInventario'
                   ?
                   <div className="sa-flexbox-row">
                     <div className="sa-flexbox-thead">Código</div>
@@ -26,7 +40,17 @@ const ReportsLayout = ({ reports, reportType }) => {
                     <div className="sa-flexbox-thead">Nombre</div>
                     <div className="sa-flexbox-thead">Cantidad</div>
                   </div>
-                  : reportType === ':EstadoActivos'
+
+                  : props.reportType === ':ConsumoSuministro'
+                  ?
+                  <div className="sa-flexbox-row">
+                    <div className="sa-flexbox-thead">Código</div>
+                    <div className="sa-flexbox-thead">Descripción</div>
+                    <div className="sa-flexbox-thead">Nombre</div>
+                    <div className="sa-flexbox-thead">Cantidad</div>
+                  </div>
+
+                  : props.reportType === ':EstadoActivos'
                   ?
                   <div className="sa-flexbox-row">
                     <div className="sa-flexbox-thead">Código</div>
@@ -35,13 +59,13 @@ const ReportsLayout = ({ reports, reportType }) => {
                     <div className="sa-flexbox-thead">Estado</div>
                     <div className="sa-flexbox-thead">Localización</div>
                   </div>
-                  : reportType === ':Bitacora'
+                  : props.reportType === ':Bitacora'
                   ?
                   <div className="sa-flexbox-row">
                     <div className="sa-flexbox-thead">Accion</div>
                     <div className="sa-flexbox-thead">Fecha</div>
                   </div>
-                  : reportType === ':SuministroLaboratorio'
+                  : props.reportType === ':SuministroLaboratorio'
                   ?
                   <div className="sa-flexbox-row">
                     <div className="sa-flexbox-thead">Código</div>
@@ -60,8 +84,8 @@ const ReportsLayout = ({ reports, reportType }) => {
           <div className="tbody">
             {
               Object
-              .keys(reports)
-              .map(key => <Report key={key} details={reports[key]} reportType={reportType}/>)
+              .keys(props.reports)
+              .map(key => <Report key={key} details={props.reports[key]} reportType={props.reportType}/>)
             }
           </div>
         </div>

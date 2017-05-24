@@ -4,7 +4,6 @@ import './index.css';
 class Report extends Component {
 
   render () {
-    //console.log(this.props.details);
     /*
 		Valor total
 		*/
@@ -28,10 +27,20 @@ class Report extends Component {
     const { assetLocation } = this.props.details;
 
     /*
+    Consumo de SuministroLaboratorio
+    */
+
+    const { consuptionSupplyCode } = this.props.details;
+    const { consuptionSupplyDescription } = this.props.details;
+    const { consuptionSupplyName } = this.props.details;
+    const { consuptionSupplyAmount } = this.props.details;
+
+    /*
 		Bitacora
 		*/
     const { action } = this.props.details;
     const { actionDate } = this.props.details;
+
     /*
 	 SuministroLaboratorio
 	 */
@@ -45,7 +54,7 @@ class Report extends Component {
     return (
     <div>
     {
-    this.props.reportType === ':ValorTotal'
+        this.props.reportType === ':ValorTotal'
     ?
     <div className="sa-flexbox-col">{ supplyTotalPrice }</div>
 
@@ -57,6 +66,16 @@ class Report extends Component {
   	  <div className="sa-flexbox-col">{name}</div>
   	  <div className="sa-flexbox-col">{amount}</div>
     </div>
+
+    : this.props.reportType === ':ConsumoSuministro'
+    ?
+    <div className="sa-flexbox-row">
+  	  <div className="sa-flexbox-col">{consuptionSupplyCode}</div>
+  	  <div className="sa-flexbox-col">{consuptionSupplyDescription}</div>
+  	  <div className="sa-flexbox-col">{consuptionSupplyName}</div>
+  	  <div className="sa-flexbox-col">{consuptionSupplyAmount}</div>
+    </div>
+
     : this.props.reportType === ':EstadoActivos'
     ?
     <div className="sa-flexbox-row">

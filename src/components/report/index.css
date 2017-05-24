@@ -1,1 +1,20 @@
+.sa-report-date {
+  margin: 5px;
+  background-color: #EEEEEE;
+  padding: 10px;
+  max-width: 480px
+}
 
+.sa-report-date {
+  display: flex;
+  flex-flow: column;
+}
+
+.sa-report-date input, label {
+  margin-bottom: 15px;
+  padding: 10px
+}
+
+.sa-btn{
+  margin-left: 10px;
+}

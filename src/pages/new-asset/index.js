@@ -13,7 +13,6 @@ class NewAssetPage extends Component {
     this.handleCategoryAssetSubmit = this.handleCategoryAssetSubmit.bind(this)
     this.handleAssetSubmit = this.handleAssetSubmit.bind(this)
     this.handleAddAssetInputChange = this.handleAddAssetInputChange.bind(this)
-    this.handleAddAssetInputChange = this.handleAddAssetInputChange.bind(this)
     this.handleAssetImageChange = this.handleAssetImageChange.bind(this)
     this.triggerAddAssetInputStateChange = this.triggerAddAssetInputStateChange.bind(this)
     this.handleAssetCategoryFormChange = this.handleAssetCategoryFormChange.bind(this)
@@ -25,23 +24,25 @@ class NewAssetPage extends Component {
       assetCode: '',
       assetLocation: '',
       assetState: '',
+      assetCategoryImage: '',
+      assetImagePreviewUrl: '',
       addAssetIsEmpty: true,
       addCategoryAssetIsEmpty: true
     }
   }
 
-  componenteWillMount() {
+  componentWillMount() {
     this.props.categoriesActions.requestAssetsCategories()
   }
 
-  render () {
-    let {imagePreviewUrl} = this.state
-    let $imagePreview = null
-    if(imagePreviewUrl) {
-      $imagePreview = (<img src={imagePreviewUrl} alt=''/>)
+  render() {
+    let {assetImagePreviewUrl} = this.state
+    let $assetImagePreview = null
+    if(assetImagePreviewUrl) {
+      $assetImagePreview = (<img src={assetImagePreviewUrl} alt=''/>)
     }
     else {
-      $imagePreview = (<div className="previewText">Selecciona una imágen para previsualizarla</div>)
+      $assetImagePreview = (<div className="previewText">Selecciona una imágen para previsualizarla</div>)
     }
     return (
       <App isSignedIn={this.props.isSignedIn} push={this.props.router.push}
@@ -55,23 +56,23 @@ class NewAssetPage extends Component {
           handleAssetCategoryFormChange={this.handleAssetCategoryFormChange}
           validateAssetInput={this.validateAssetInput}
           handleAssetImageChange={this.handleAssetImageChange}
-          imagePreviewInfo={$imagePreview}/>
+          imageAssetPreviewInfo={$assetImagePreview}/>
       </App>
     )
   }
 
   handleCategoryAssetSubmit (event) {
     event.preventDefault()
-    const categoryName = event.target.categoryName.value
-    const categoryImage = this.state.imagePreviewUrl
+    const categoryName = event.target.assetCategory.value
+    const assetCategoryImage = this.state.assetImagePreviewUrl
     const newCategory = {
       categoryName,
-      categoryImage
+      assetCategoryImage
     }
     this.props.categoriesActions.addAssetsCategory(newCategory)
     this.setState({
-      categoryImage: '',
-      imagePreviewUrl: ''
+      assetCategoryImage: '',
+      assetImagePreviewUrl: ''
     })
     event.target.reset()
   }
@@ -105,8 +106,8 @@ class NewAssetPage extends Component {
 
   handleAssetCategoryFormChange (event) {
     switch (event.target.name) {
-      case 'categoryName':
-        this.setState({categoryName: event.target.value},
+      case 'assetCategory':
+        this.setState({assetCategory: event.target.value},
           function(){return this.triggerCategoryFormChange(this.state)})
         break
       default:
@@ -118,7 +119,7 @@ class NewAssetPage extends Component {
   handleAddAssetInputChange(event) {
     switch (event.target.name) {
       case 'assetDescription':
-        console.log("description")
+        //console.log("description")
         this.setState({assetDescription: event.target.value},
           function(){return this.triggerAddAssetInputStateChange(this.state)})
         break
@@ -153,8 +154,8 @@ class NewAssetPage extends Component {
     let file = event.target.files[0]
     reader.onloadend = () => {
       this.setState({
-        categoryImage: file,
-        imagePreviewUrl: reader.result},
+        assetCategoryImage: file,
+        assetImagePreviewUrl: reader.result},
         function(){return this.triggerCategoryFormChange(this.state)})
     }
     reader.readAsDataURL(file)
@@ -177,13 +178,15 @@ class NewAssetPage extends Component {
   }
 
   triggerCategoryFormChange(state) {
-    if(state.categoryName !== '' && state.categoryImage !== ''
-        && state.isCategoryEmpty){
-      this.setState({isCategoryEmpty: !state.isCategoryEmpty})
+    //console.log(state.assetCategory);
+    //console.log(state.assetCategoryImage);
+    if(state.assetCategory !== '' && state.assetCategoryImage !== ''
+        && state.addCategoryAssetIsEmpty){
+      this.setState({addCategoryAssetIsEmpty: !state.addCategoryAssetIsEmpty})
     }
-    else if((state.categoryName === '' || state.categoryImage === '')
-      && !state.isCategoryEmpty){
-        this.setState({isCategoryEmpty: !this.state.isCategoryEmpty})
+    else if((state.assetCategory === '' || state.assetCategoryImage === '')
+      && !state.addCategoryAssetIsEmpty){
+        this.setState({addCategoryAssetIsEmpty: !this.state.addCategoryAssetIsEmpty})
       }
   }
 
