@@ -6,15 +6,37 @@ import * as suppliesActions from '../../actions/supplies'
 import App from '../../components/app'
 
 class SuppliesPage extends Component {
+  constructor(props) {
+    super(props)
+    this.getCaret = this.getCaret.bind(this)
+  }
   componentWillMount() {
     this.props.actions.requestSuppliesPerCategory(this.props.params.categoryId)
   }
+
+  getCaret(direction) {
+    if (direction === 'asc') {
+      return (
+        <span> up</span>
+      );
+    }
+    if (direction === 'desc') {
+      return (
+        <span> down</span>
+      );
+    }
+    return (
+      <span> up/down</span>
+    )
+  }
+
 
   render () {
     return (
       <App isSignedIn={this.props.isSignedIn} push={this.props.router.push}
         isAdmin={this.props.isAdmin}>
-        <SuppliesLayout supplies={this.props.supplies}/>
+        <SuppliesLayout supplies={this.props.supplies}
+          getCaret={this.getCaret}/>
       </App>
     )
   }

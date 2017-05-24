@@ -15,6 +15,22 @@ module.exports = {
     supplyAmount: 90,
     categoryCode: 1
   },
+  supply5: {
+    supplyCode: 5,
+    supplyName: "Papel reciclado",
+    supplyDescription: "resma de papel reciclado",
+    supplyPrice: 400,
+    supplyAmount: 20,
+    categoryCode: 1
+  },
+  supply6: {
+    supplyCode: 6,
+    supplyName: "Papel seda",
+    supplyDescription: "papel seda de varios colores",
+    supplyPrice: 600,
+    supplyAmount: 50,
+    categoryCode: 1
+  },
   supply3: {
     supplyCode: 3,
     supplyName: "cartulina patito",

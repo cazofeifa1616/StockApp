@@ -1,21 +1,21 @@
-.sa-flexbox-table {
+table {
   display: flex;
   flex-direction: column;
   margin: 10px;
 }
 
-.sa-flexbox-row {
+tr{
   display: flex;
   flex-direction: row;
 }
 
-.sa-flexbox-thead,
-.sa-flexbox-col {
+thead,
+td, th {
   flex: 1;
   display: block;
 }
 
-.sa-flexbox-thead{
+thead{
   text-align: center;
 }
 
@@ -25,7 +25,8 @@ table {
 }
 
 thead {
-  background-color: #b6b6b6
+  background-color: #b6b6b6;
+  cursor: pointer;
 }
 
 table, th, td {
