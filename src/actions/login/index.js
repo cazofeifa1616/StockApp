@@ -1,5 +1,6 @@
 // import fetch from 'isomorphic-fetch'
 import constants from '../action-types'
+import LoginApi from '../../api/login'
 // import * as httpActions from '../http'
 
 /**
@@ -25,13 +26,12 @@ function localLogoutSuccess (push) {
   }
 }
 
-/*
-function failureLocalLogin (errorMessage) {
+function localLoginFailure (errorMessage) {
   return {
-    type: constants.FAILURE_LOCAL_LOGIN
+    type: constants.FAILURE_LOCAL_LOGIN,
+    errorMessage
   }
 }
-*/
 
 /**
  *
@@ -56,13 +56,25 @@ export function requestLocalLogout (userJwt, push) {
   }
 }
 
-export function requestLocalLogin (credentials, push) {
+export function requestLocalLogin (username, password, push) {
   return dispatch => {
-    dispatch(localLoginSuccess(push, {
-      jwt: {},
-      isSignedIn: true,
-      isAdmin: false
-    }))
+    const result = LoginApi.getUser(username, password)
+    console.log(result)
+    if (result === 0) {
+      dispatch(localLoginFailure('Credenciales incorrectas'))
+    } else if (result === 1) {
+      dispatch(localLoginSuccess(push, {
+        isSignedIn: true,
+        isAdmin: false,
+        userJwt: {}
+      }))
+    } else {
+      dispatch(localLoginSuccess(push, {
+        isSignedIn: true,
+        isAdmin: true,
+        userJwt: {}
+      }))
+    }
   }
   /*
   const request = new Request('http://localhost:3000/login', {

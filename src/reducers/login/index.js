@@ -12,6 +12,11 @@ const login = function (state = {session: undefined}, action) {
         ...state,
         session: undefined
       }
+    case constants.FAILURE_LOCAL_LOGIN:
+      return {
+        ...state,
+        session: action.errorMessage
+      }
     default:
       return state
   }

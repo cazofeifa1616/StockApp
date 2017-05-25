@@ -33,18 +33,11 @@ class Login extends Component {
     event.preventDefault()
     const username = event.target.username
     const password = event.target.password
-    const isRemembered = event.target.remember.checked
     if (username.value !== '' && password.value !== '') {
-      const userCredentials = {
-        username: username.value,
-        pasword: password.value,
-        isRemembered
-      }
       this.setState({
-        userCredentials: userCredentials,
         isLoginInputEmpty: false
       })
-      this.props.actions.requestLocalLogin(userCredentials, this.props.router.push)
+      this.props.actions.requestLocalLogin(username.value, password.value, this.props.router.push)
     } else {
       this.setState({isLoginInputEmpty: true})
     }
@@ -56,7 +49,8 @@ class Login extends Component {
         <LoginLayout clickFacebookButton={this.clickFacebookButton}
           clickLoginButton={this.clickLoginButton}
           isLoginInputEmpty={this.state.isLoginInputEmpty}
-          errorEmptyInputMessage={this.state.errorEmptyInputMessage} />
+          errorEmptyInputMessage={this.state.errorEmptyInputMessage}
+          failureLogin={this.props.errorMessage} />
       </App>
     )
   }
@@ -65,7 +59,8 @@ class Login extends Component {
 function mapStateToProps (state) {
     return {
       userJwt: state.login.session ? state.login.session.userJwt : undefined,
-      isSignedIn: state.login.session ? state.login.session.isSignedIn : false
+      isSignedIn: typeof state.login.session === 'object' ? state.login.session.isSignedIn : false,
+      errorMessage: typeof state.login.session === 'string' ? state.login.session : ''
     }
 }
 

@@ -19,13 +19,6 @@ class ConsumeSuppliesPage extends Component {
     this.props.actions.requestAllSupplies()
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.supplyAmount !== nextProps.supplyAmount) {
-      console.log('entra')
-
-    }
-  }
-
   clickSubmit (event) {
     event.preventDefault()
     const operatorName = event.target.operatorName.value
@@ -36,7 +29,7 @@ class ConsumeSuppliesPage extends Component {
   }
 
   clickSelect (event) {
-    const supplyCode = event.target.selectedIndex
+    const supplyCode = event.target[event.target.selectedIndex].id
     this.props.actions.requestSupplyAmount(supplyCode)
   }
 
@@ -53,7 +46,6 @@ class ConsumeSuppliesPage extends Component {
 }
 
 function mapStateToProps(state, ownProps) {
-  console.log(Object.keys(state.supplyAmounts).length)
   return {
     supplyAmount: typeof state.supplyAmounts === 'object' ? '' : state.supplyAmounts,
     supplies: state.supplies,
