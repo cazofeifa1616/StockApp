@@ -19,7 +19,10 @@ const SearchSupplyLayout = ({categories}) => {
 }
 
 SearchSupplyLayout.propTypes = {
-  categories: PropTypes.object.isRequired
+  categories: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object
+  ])
 }
 
 export default SearchSupplyLayout

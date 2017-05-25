@@ -22,7 +22,10 @@ class SearchSupplyPage extends Component {
 }
 
 SearchSupplyPage.propTypes = {
-  categories: PropTypes.object.isRequired
+  categories: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object
+  ])
 }
 
 function mapStateToProps(state, ownProps) {

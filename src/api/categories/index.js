@@ -1,4 +1,4 @@
-// import fetch from 'isomorphic-fetch'
+//import fetch from 'isomorphic-fetch'
 import sampleData from '../../static/json/sample-data'
 
 class CategoryApi {
@@ -10,18 +10,16 @@ class CategoryApi {
     /*
     return fetch('http://localhost:3001/suministros')
     .then(response => {
-      return response.json()
+      console.log(response)
+      return response
     }).catch(error => {
-      //console.log('No entró')
       return error
     })
     */
     //--------------------------------------------------------
   }
 
-  static addCategory(category) {
-    //console.log("Entro a agregar api")
-
+  static addCategory(category) {    
     var newNameCategory = 'Category '+Date.now()
     sampleData[newNameCategory] =
     {categoryCode: Date.now(),

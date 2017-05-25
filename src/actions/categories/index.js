@@ -37,11 +37,14 @@ export function requestCategories () {
 
   //--------------------------------------------------------
   //Conexión a base de datos
-  /*  
+  /*
   return (dispatch) => {
     return categoriesApi.getAllCategories()
     .then(result => {
-      dispatch(receiveCategories(result))
+      result.json()
+      .then(result2 => {
+        dispatch(receiveCategories(result2.recordset))
+      })            
     }).catch(error => {
       throw(error)
     })
