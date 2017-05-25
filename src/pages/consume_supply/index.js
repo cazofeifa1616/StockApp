@@ -19,12 +19,10 @@ class ConsumeSuppliesPage extends Component {
     this.props.actions.requestAllSupplies()
   }
 
-  componentWillUpdate(nextProps, nextState) {
-    if (this.props.supplies !== nextProps.supplies) {
+  componentWillReceiveProps(nextProps) {
+    if (this.props.supplyAmount !== nextProps.supplyAmount) {
       console.log('entra')
-      return {
-        supplies: nextProps.supplies
-      }
+
     }
   }
 
@@ -55,8 +53,9 @@ class ConsumeSuppliesPage extends Component {
 }
 
 function mapStateToProps(state, ownProps) {
+  console.log(Object.keys(state.supplyAmounts).length)
   return {
-    supplyAmount: state.suppliesAmounts !== undefined ? state.suppliesAmounts[0] : false,
+    supplyAmount: typeof state.supplyAmounts === 'object' ? '' : state.supplyAmounts,
     supplies: state.supplies,
     isSignedIn: state.login.session !== undefined ? state.login.session.isSignedIn : false,
     isAdmin: state.login.session !== undefined ? state.login.session.isAdmin : false

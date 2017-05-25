@@ -16,11 +16,19 @@ class SuppliesApi {
       */
   }
 
-  static updateSupplyAmount (supplyCode) {
+  static updateAmount (supplyCode) {
+    /*
     Object.keys(sampleSupplies)
     .filter(key => sampleSupplies[key].supplyCode === +supplyCode)
     .map(key => sampleSupplies[key].supplyAmount--)
-    return sampleSupplies
+    */
+    for (var i in sampleSupplies){
+      if (sampleSupplies[i].supplyCode === +supplyCode) {
+        sampleSupplies[i].supplyAmount--
+        var newAmount = sampleSupplies[i].supplyAmount
+        return newAmount
+      }
+    }
   }
 
   static getAllSupplies() {
