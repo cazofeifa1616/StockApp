@@ -38,13 +38,6 @@ export function addSupplySuccess (newSupply) {
   }
 }
 
-function updateSupplyAmountSuccess (supplies) {
-  return {
-    type: constants.UPDATE_SUPPLY_AMOUNT_SUCCESS,
-    supplies
-  }
-}
-
 /**
  *
  * An example asynchonous action to for API calls
@@ -67,7 +60,8 @@ function updateSupplyAmountSuccess (supplies) {
  }
 
  export function requestSupplyAmount (supplyCode) {
-   return receiveSupplyAmount(suppliesApi.getSupplyAmount(supplyCode))
+   const receive = suppliesApi.getSupplyAmount(supplyCode)
+   return receiveSupplyAmount(receive[0])
    /*
     return (dispatch) => {
       return suppliesApi.getSupplyAmount(supplyCode)
@@ -81,7 +75,7 @@ function updateSupplyAmountSuccess (supplies) {
  }
 
  export function updateSupplyAmount (supplyCode) {
-   return updateSupplyAmountSuccess(suppliesApi.updateSupplyAmount(supplyCode))
+   return receiveSupplyAmount(suppliesApi.updateAmount(supplyCode))
  }
 
 export function requestSuppliesPerCategory (categoryId) {
