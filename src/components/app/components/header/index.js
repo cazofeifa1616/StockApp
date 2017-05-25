@@ -3,7 +3,6 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import './index.css'
 import * as loginActions from '../../../../actions/login'
-import * as alertActions from '../../../../actions/alerts'
 import {Link} from 'react-router'
 
 class Header extends Component {
@@ -11,10 +10,6 @@ class Header extends Component {
   constructor(props) {
     super(props)
     this.clickLogout = this.clickLogout.bind(this)
-  }
-
-  componentWillMount(){
-    this.props.alertActions.getAmountAlerts()
   }
 
   clickLogout(e) {
@@ -34,11 +29,12 @@ class Header extends Component {
           <div>
           <button className="sa-header-logout--button"
           onClick={(e) => this.clickLogout(e)}>Salir</button>
-
-          this.props.amountAlerts
-          ?
-          <Link className="sa-link--alert" to="/alert">Alerta: Suministros acabándose</Link>
-          : false
+        {
+        this.props.isAdmin
+        ?
+        <Link className="sa-alers--message" to='/alert'>Alertas: {this.props.alerts ? this.props.alerts.length : 0}</Link>
+        : false
+      }
           </div>
           : false
         }
@@ -52,14 +48,12 @@ function mapStateToProps (state) {
   //console.log(state.amountAlert)
     return {
       userJwt: state.login.session ? state.login.session.userJwt : undefined,
-      amountAlerts: state.amountAlert.alert1 ? state.amountAlert.alert1.amount : {}
     }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(loginActions, dispatch),
-    alertActions: bindActionCreators(alertActions, dispatch)
   }
 }
 

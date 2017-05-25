@@ -49,6 +49,12 @@ class SuppliesApi {
     .map(key => sampleSupplies[key].supplyAmount)
   }
 
+  static getAlertsFromSupplies () {
+    return Object.keys(sampleSupplies)
+    .filter(key => sampleSupplies[key].supplyAmount < 6)
+    .map(key => sampleSupplies[key])
+  }
+
   static updateSupply(supply) {
     Object.keys(sampleSupplies)
     .filter(key => sampleSupplies[key].supplyCode === +supply.supplyCode)

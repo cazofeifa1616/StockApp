@@ -44,7 +44,7 @@ class NewSupplyPage extends Component {
     }
     return (
       <App isSignedIn={this.props.isSignedIn} push={this.props.router.push}
-        isAdmin={this.props.isAdmin}>
+        isAdmin={this.props.isAdmin} alerts={this.props.alerts}>
         <NewSupplyLayout className="sa-new-supply-layout" categories={this.props.categories}
           handleCategorySubmit={this.handleCategorySubmit}
           handleSupplySubmit={this.handleSupplySubmit}
@@ -200,6 +200,7 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state, ownProps) {
   return {
+    alerts: state.alerts || {},
     categories: state.categories,
     isSignedIn: state.login.session !== undefined ? state.login.session.isSignedIn : false,
     isAdmin: state.login.session !== undefined ? state.login.session.isAdmin : false

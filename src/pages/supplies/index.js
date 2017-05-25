@@ -34,7 +34,7 @@ class SuppliesPage extends Component {
   render () {
     return (
       <App isSignedIn={this.props.isSignedIn} push={this.props.router.push}
-        isAdmin={this.props.isAdmin}>
+        isAdmin={this.props.isAdmin} alerts={this.props.alerts}>
         <SuppliesLayout supplies={this.props.supplies}
           getCaret={this.getCaret}/>
       </App>
@@ -44,6 +44,7 @@ class SuppliesPage extends Component {
 
 function mapStateToProps(state, ownProps) {
   return {
+    alerts: state.alerts || {},
     supplies: state.supplies,
     isSignedIn: state.login.session !== undefined ? state.login.session.isSignedIn : false,
     isAdmin: state.login.session !== undefined ? state.login.session.isAdmin : false

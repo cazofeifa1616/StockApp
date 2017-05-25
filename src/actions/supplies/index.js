@@ -38,6 +38,13 @@ export function addSupplySuccess (newSupply) {
   }
 }
 
+function receiveAlerts (alerts) {
+  return {
+    type: constants.RECEIVE_ALERTS,
+    alerts
+  }
+}
+
 /**
  *
  * An example asynchonous action to for API calls
@@ -45,6 +52,11 @@ export function addSupplySuccess (newSupply) {
  * @returns {Promise} - a result Promise
  *
  */
+
+export function requestAlerts () {
+  return receiveAlerts(suppliesApi.getAlertsFromSupplies())
+}
+
  export function requestAllSupplies() {
    return receiveSupplies(suppliesApi.getAllSupplies())
    /*

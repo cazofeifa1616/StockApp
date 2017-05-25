@@ -14,7 +14,7 @@ class SearchAssetPage extends Component {
   render () {
     return (
       <App isSignedIn={this.props.isSignedIn} push={this.props.router.push}
-        isAdmin={this.props.isSignedIn}>
+        isAdmin={this.props.isSignedIn} alerts={this.props.alerts}>
         <SearchAssetLayout categoriesAssets={this.props.categoriesAssets}/>
       </App>
     )
@@ -29,6 +29,7 @@ SearchAssetPage.propTypes = {
 function mapStateToProps(state, ownProps) {
 	//console.log(state.categoriesAssets);
   return {
+    alerts: state.alerts || {},
     categoriesAssets: state.categoriesAssets,
     isSignedIn: state.login.session !== undefined ? state.login.session.isSignedIn : false,
     isAdmin: state.login.session !== undefined ? state.login.session.isAdmin : false

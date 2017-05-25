@@ -81,7 +81,7 @@ class ReportsPage extends Component {
   render () {
     return (
       <App isSignedIn={this.props.isSignedIn} push={this.props.router.push}
-        isAdmin={this.props.isAdmin}>
+        isAdmin={this.props.isAdmin} alerts={this.props.alerts}>
         <ReportsLayout reportType={this.props.params.reportType} reports={this.props.reports}
         handleConsuptionReportSubmit={this.handleConsuptionReportSubmit}
         errorMsg={this.state.errorMsg}/>
@@ -112,6 +112,7 @@ class ReportsPage extends Component {
 
 function mapStateToProps(state, ownProps) {
   return {
+    alerts: state.alerts || {},
     reports: state.reports,
     isSignedIn: state.login.session !== undefined ? state.login.session.isSignedIn : false,
     isAdmin: state.login.session !== undefined ? state.login.session.isAdmin : undefined,

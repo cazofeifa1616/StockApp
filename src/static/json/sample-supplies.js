@@ -20,7 +20,7 @@ module.exports = {
     supplyName: "Papel reciclado",
     supplyDescription: "resma de papel reciclado",
     supplyPrice: 400,
-    supplyAmount: 20,
+    supplyAmount: 5,
     categoryCode: 1
   },
   supply6: {
@@ -36,7 +36,7 @@ module.exports = {
     supplyName: "cartulina patito",
     supplyDescription: "caja con 100 cartulinas marca patito",
     supplyPrice:600,
-    supplyAmount: 100,
+    supplyAmount: 4,
     categoryCode: 2
   },
   supply4: {

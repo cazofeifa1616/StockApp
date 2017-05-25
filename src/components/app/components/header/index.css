@@ -30,4 +30,13 @@
   color: white;
   margin-right: 5px;
   border: none;
+  padding: 10px;
+}
+
+.sa-alers--message {
+  cursor: pointer;
+  float: right;
+  margin-right: 100px;
+  margin-top: -54px;
+  color: white;
 }

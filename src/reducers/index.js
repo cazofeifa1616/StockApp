@@ -6,8 +6,7 @@ import categoriesAssets from './categories-assets/categories-assets-reducer'
 import reports from './reports/reports-reducer'
 import login from './login'
 import supplyAmounts from './supplies_amounts'
-import alerts from './alerts/alerts-reducer'
-import amountAlert from './alert-amount/alert-amount-reducer'
+import alerts from './alerts'
 
 const rootReducers = combineReducers({
   categories,
@@ -17,7 +16,6 @@ const rootReducers = combineReducers({
   login,
   reports,
   supplyAmounts,
-  amountAlert,
   alerts
 })
 

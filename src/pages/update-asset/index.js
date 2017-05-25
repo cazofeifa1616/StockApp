@@ -110,7 +110,7 @@ class UpdateAssetPage extends Component {
   render () {
     return (
       <App isSignedIn={this.props.isSignedIn} push={this.props.router.push}
-        isAdmin={this.props.isAdmin}>
+        isAdmin={this.props.isAdmin} alerts={this.props.alerts}>
         <UpdateAssetLayout
         assets={this.props.assets}
         handleUpdateAsset={ this.handleUpdateAsset }
@@ -133,6 +133,7 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state, ownProps) {
   return {
+    alerts: state.alerts || {},
     assets: state.assets,
     isSignedIn: state.login.session !== undefined ? state.login.session.isSignedIn : false,
     isAdmin: state.login.session !== undefined ? state.login.session.isAdmin : false

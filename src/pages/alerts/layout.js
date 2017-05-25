@@ -3,11 +3,8 @@ import Alert from '../../components/alert';
 import './index.css';
 
 const AlertsLayout = (props)=> {
-  console.log("Alerts")
-  console.log(props.alerts)
     return (
       <div className="sa-alert-container">
-
         <h3 >Alertas</h3>
         <div className="sa-flexbox-table">
           <div className="thead">
