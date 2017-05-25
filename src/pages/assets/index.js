@@ -7,8 +7,28 @@ import App from '../../components/app'
 
 
 class AssetsPage extends Component {
+  constructor(props){
+    super(props)
+    this.getCaret = this.getCaret.bind(this)
+  }
   componentWillMount() {
     this.props.actions.requestAssetsPerCategory(this.props.params.categoryId)
+  }
+
+  getCaret(direction) {
+    if (direction === 'asc') {
+      return (
+        <span> up</span>
+      );
+    }
+    if (direction === 'desc') {
+      return (
+        <span> down</span>
+      );
+    }
+    return (
+      <span> up/down</span>
+    )
   }
 
   render () {

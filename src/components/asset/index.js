@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react'
+/*import React, {Component, PropTypes} from 'react'
 import './index.css'
 
 class Asset extends Component {
@@ -32,7 +32,7 @@ Asset.propTypes = {
   assetCode: PropTypes.number,
   assetName: PropTypes.string,
   assetDescription: PropTypes.string,
-  assetPrice: PropTypes.number, 
+  assetPrice: PropTypes.number,
   assetDateOfAdmission: PropTypes.instanceOf(Date),
   assetExpirationDate: PropTypes.instanceOf(Date),
   assetLocation: PropTypes.string,
@@ -40,4 +40,4 @@ Asset.propTypes = {
   categoryCode: PropTypes.number
 }
 
-export default Asset
+export default Asset*/

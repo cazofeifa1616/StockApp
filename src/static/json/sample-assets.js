@@ -43,4 +43,15 @@ module.exports = {
     assetState: 1,
     categoryCode: 4
   },
+  asset5: {
+    assetCode: 5,
+    assetName: 'B02',
+    assetDescription: 'Teclado',
+    assetPrice: 500,
+    assetDateOfAdmission: '20/03/2016',
+    assetExpirationDate: '13/03/2022',
+    assetLocation: 'LAIMI 2',
+    assetState: 1,
+    categoryCode: 1
+  },
 }

@@ -1,46 +1,58 @@
-import React, {PropTypes} from 'react'
-import Asset from '../../components/asset'
+import React from 'react'
+//import Asset from '../../components/asset'
 //import SearchSupplyBox from '../../components/search-asset-box'
+import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 import './index.css'
 
+function getCaret(direction) {
+  if (direction === 'asc') {
+    return (
+      <span>▲</span>
+    );
+  }
+  if (direction === 'desc') {
+    return (
+      <span>▼</span>
+    );
+  }
+  return (
+    <span>▲</span>
+  );
+}
 
- //<SearchSupplyBox className="sa-search-asset-box"/>
-const AssetsLayout = ({assets}) => {
+const AssetsLayout = (props) => {
+  //const getAssets = assets || {}
+  console.log("assets")
+  console.log(props.assets)
+  const myAssets = []
+  Object
+  .keys(props.assets)
+  .map(key => myAssets.push({
+    assetCode: props.assets[key].assetCode,
+    assetName: props.assets[key].assetName,
+    assetDescription: props.assets[key].assetDescription,
+    assetDateOfAdmission: props.assets[key].assetDateOfAdmission,
+    assetExpirationDate: props.assets[key].assetExpirationDate,
+    assetLocation: props.assets[key].assetLocation,
+    assetState: props.assets[key].assetState
+  }))
+
     return (
       <div className="sa-asset-container">
 
         <h3 >Lista de activos</h3>
-        <table className="sa-flexbox-table">
-          <thead>
-            <tr className="sa-flexbox-row">
-              <th className="sa-flexbox-thead">Código</th>
-              <th className="sa-flexbox-thead">Nombre</th>
-              <th className="sa-flexbox-thead">Descripción</th>
-              <th className="sa-flexbox-thead">Precio</th>
-              <th className="sa-flexbox-thead">Fecha de ingreso</th>
-              <th className="sa-flexbox-thead">Fecha de expiración</th>
-              <th className="sa-flexbox-thead">Localización</th>
-              <th className="sa-flexbox-thead">Estado</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              Object
-              .keys(assets)
-              .map(key => <Asset key={key} details={assets[key]}/>)
-            }
-          </tbody>
-        </table>
+        <BootstrapTable data={myAssets} striped={true} hover={true}>
+          <TableHeaderColumn width='36' dataField="assetCode" isKey={true} dataSort={true} caretRender={ getCaret } defaultASC>Código</TableHeaderColumn>
+          <TableHeaderColumn width='100' dataField="assetName" dataSort={true} caretRender={ getCaret }>Nombre</TableHeaderColumn>
+          <TableHeaderColumn width='100' dataField="assetDescription" dataSort={true} caretRender={ getCaret }>Descripción</TableHeaderColumn>
+          <TableHeaderColumn width='36' dataField="assetDateOfAdmission" dataSort={true} caretRender={ getCaret }>Fecha de ingreso</TableHeaderColumn>
+          <TableHeaderColumn width='36' dataField="assetExpirationDate" dataSort={true} caretRender={ getCaret }>Fecha de expiración</TableHeaderColumn>
+          <TableHeaderColumn width='36' dataField="assetLocation" dataSort={true} caretRender={ getCaret }>Localización</TableHeaderColumn>
+          <TableHeaderColumn width='36' dataField="assetState" dataSort={true} caretRender={ getCaret }>Estado</TableHeaderColumn>
+        </BootstrapTable>
       </div>
     )
 }
-
-AssetsLayout.propTypes={
-  assets: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.array
-    ]).isRequired
-};
 
 
 
