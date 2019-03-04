@@ -28,7 +28,17 @@ pipeline {
     
     post {
         always {
-            junit 'build/reports/**/*.txt'
+            publishHTML(
+                [
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: false,
+                    keepAll: false,
+                    reportDir: 'coverage',
+                    reportFiles: 'index.html',
+                    reportName: 'HTML Report',
+                    reportTitles: ''
+                ]
+            )
         }
     }
 }
