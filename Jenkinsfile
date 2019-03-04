@@ -21,7 +21,7 @@ pipeline {
         
         stage('Deploy') {
             steps {
-                echo 'deploy on windows'
+                bat npm run build
             }
         }
     }
@@ -29,6 +29,7 @@ pipeline {
     post {
         always {
             junit 'build/test-results/test/*.xml'
+            deleteDir()
         }
     }
 }
