@@ -6,19 +6,57 @@ pipeline {
     }
 
     stages {
-        stage('Build') {
+        stage('Build on linux') {
+            agent {
+                label 'linux'
+            }
             steps {
-                echo 'npm install'
+                sh 'npm install'
             }
         }
-        stage('Test') {
+        
+        stage('Build on windows') {
+            agent {
+                label 'windows'
+            }
             steps {
-                echo 'npm test'
+                bat 'npm install'
             }
         }
-        stage('Deploy') {
+        
+        stage('Test on linux') {
+            agent {
+                label 'linux'
+            }
             steps {
-                netstat -ano
+                sh 'npm test'
+            }
+        }
+        
+        stage('Test on windows') {
+            agent {
+                label 'windows'
+            }
+            steps {
+                bat 'npm test'
+            }
+        }
+        
+        stage('Deploy on linux') {
+            agent {
+                label 'linux'
+            }
+            steps {
+                echo 'deploy on linux'
+            }
+        }
+        
+        stage('Deploy on windows') {
+            agent {
+                label 'windows'
+            }
+            steps {
+                echo 'deploy on windows'
             }
         }
     }
