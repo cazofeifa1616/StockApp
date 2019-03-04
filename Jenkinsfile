@@ -1,17 +1,15 @@
-#!/usr/bin/env sh
-
 pipeline {
     agent any
 
     stages {
         stage('Build') {
             steps {
-                sh 'npm install'
+                bat 'npm install'
             }
         }
         stage('Test') {
             steps {
-                sh 'npm test'
+                bat 'npm test'
             }
         }
         stage('Deploy') {
