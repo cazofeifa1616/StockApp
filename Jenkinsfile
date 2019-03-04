@@ -18,7 +18,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                netstat -ano | findStr "3001"
+                netstat -ano | findStr 3001
             }
         }
     }
