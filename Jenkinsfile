@@ -22,7 +22,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 bat 'npm run build'
-                bat 'rmdir node_modules'
+                bat 'rd /S /Q node_modules'
             }
         }
     }
