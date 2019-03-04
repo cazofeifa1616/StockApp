@@ -6,58 +6,29 @@ pipeline {
     }
 
     stages {
-        stage('Build on linux') {
-            agent {
-                label 'linux'
-            }
-            steps {
-                sh 'npm install'
-            }
-        }
         
-        stage('Build on windows') {
-            agent {
-                label 'windows'
-            }
+        stage('Build') {
             steps {
                 bat 'npm install'
             }
         }
         
-        stage('Test on linux') {
-            agent {
-                label 'linux'
-            }
-            steps {
-                sh 'npm test'
-            }
-        }
-        
-        stage('Test on windows') {
-            agent {
-                label 'windows'
-            }
+        stage('Test') {
             steps {
                 bat 'npm test'
             }
         }
         
-        stage('Deploy on linux') {
-            agent {
-                label 'linux'
-            }
-            steps {
-                echo 'deploy on linux'
-            }
-        }
-        
-        stage('Deploy on windows') {
-            agent {
-                label 'windows'
-            }
+        stage('Deploy') {
             steps {
                 echo 'deploy on windows'
             }
+        }
+    }
+    
+    post {
+        always {
+            junit 'build/reports/**/*.xml'
         }
     }
 }
