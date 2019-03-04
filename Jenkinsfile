@@ -24,7 +24,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 // bat 'npm run build'
-                bat 'rd /S /Q node_modules'
+                bat 'rd /S /Q node_modules 2>nul'
                 // bat 'rd /S /Q C:\\jenkins\\var\\www\\zeusui-prod'
                 // bat 'mkdir zeusui-prod'
                 // bat 'cd zeusui-prod'
