@@ -33,7 +33,7 @@ pipeline {
                     allowMissing: false,
                     alwaysLinkToLastBuild: false,
                     keepAll: false,
-                    reportDir: 'coverage',
+                    reportDir: 'public',
                     reportFiles: 'index.html',
                     reportName: 'HTML Report',
                     reportTitles: ''
