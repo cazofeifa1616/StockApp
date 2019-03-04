@@ -22,13 +22,15 @@ pipeline {
         stage('Deploy') {
             steps {
                 bat 'npm run build'
+                bat 'rmdir node_modules'
             }
         }
     }
     
     post {
         always {
-            deleteDir()
+            // deleteDir()
+            echo 'finished'
         }
     }
 }
