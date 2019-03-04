@@ -1,19 +1,17 @@
+#!/usr/bin/env sh
+
 pipeline {
     agent any
-    
-    enviroment {
-        CI = 'true'
-    }
 
     stages {
         stage('Build') {
             steps {
-                bat 'npm install'
+                sh 'npm install'
             }
         }
         stage('Test') {
             steps {
-                bat 'npm test'
+                sh 'npm test'
             }
         }
         stage('Deploy') {
