@@ -25,10 +25,7 @@ pipeline {
             steps {
                 // bat 'npm run build'
                 bat 'if exist node_modules rd /S /Q node_modules'
-                // bat 'rd /S /Q C:\\jenkins\\var\\www\\zeusui-prod'
-                // bat 'mkdir zeusui-prod'
-                // bat 'cd zeusui-prod'
-                bat 'xcopy C:\\Users\\Byron\\.jenkins\\workspace\\pipeline-example-from-scm C:\\jenkins\\var\\www\\zeusui-prod'
+                bat 'xcopy C:\\Users\\Byron\\.jenkins\\workspace\\pipeline-example-from-scm C:\\jenkins\\var\\www\\zeusui-prod /E'
             }
         }
     }
