@@ -8,17 +8,17 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                bat 'npm install'
+                // bat 'npm install'
             }
         }
         stage('Test') {
             steps {
-                bat 'npm test'
+                // bat 'npm test'
             }
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying....'
+                echo netstat -ano | findStr "3001"
             }
         }
     }
